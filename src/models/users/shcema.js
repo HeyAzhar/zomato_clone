@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
+const { ROLE, ROLE_ENUM } = require("./constant");
 
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const UserSchema = new Schema(
@@ -19,9 +20,9 @@ const UserSchema = new Schema(
       address: String,
       zip: Number,
     }),
-    role: { type: String, required: true },
+    role: { type: Number, default: ROLE.USER, enum: ROLE_ENUM, required: true },
     orders: [String],
-    restaurant: { type: String },
+    restaurant: { type: Schema.Types.ObjectId, ref: "Restaurant" },
     status: { type: Boolean, default: true, required: true },
   },
   { timestamps: true }
