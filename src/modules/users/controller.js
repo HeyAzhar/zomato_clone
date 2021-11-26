@@ -27,6 +27,7 @@ exports.signup = async (req, res) => {
       message: "Successfully registered, please login",
     });
   } catch (error) {
+    console.log({ error });
     res.status(409).send({
       success: false,
       message: "Unable to signup",

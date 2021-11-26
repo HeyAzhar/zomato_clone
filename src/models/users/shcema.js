@@ -15,13 +15,15 @@ const UserSchema = new Schema(
     },
     email: { type: String, unique: true, lowercase: true },
     password: { type: String, required: true },
-    address: new Schema({
-      name: String,
-      address: String,
-      zip: Number,
-    }),
+    address: {
+      type: {
+        name: { type: String, required: true },
+        address: String,
+        zip: Number,
+      },
+    },
     role: { type: Number, default: ROLE.USER, enum: ROLE_ENUM, required: true },
-    orders: [String],
+    orders: [{ type: Schema.Types.ObjectId, ref: "Order" }],
     restaurant: { type: Schema.Types.ObjectId, ref: "Restaurant" },
     status: { type: Boolean, default: true, required: true },
   },
