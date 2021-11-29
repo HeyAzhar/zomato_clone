@@ -50,3 +50,18 @@ exports.signupRestaurant = async (req, res) => {
     });
   }
 };
+
+exports.get = async (req, res) => {
+  const restaurant = await Restaurant.get().catch((error) => {
+    res.status(409).send({
+      success: false,
+      message: "Unable to Get restaurant",
+    });
+  });
+
+  res.status(200).send({
+    success: true,
+    data: restaurant,
+    message: "Data fetched successfully",
+  });
+};

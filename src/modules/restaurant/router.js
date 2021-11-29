@@ -11,4 +11,6 @@ router.post(
   controller.signupRestaurant
 );
 
+router.get("/", controller.get);
+
 module.exports = router;
